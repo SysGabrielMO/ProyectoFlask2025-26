@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio - Euro 2024{% endblock %}
+
+{% block contenido %}
+<div class="portada">
+    <a href="/partidos">
+        <img src="{{ url_for('static', filename='eurocopa.jpeg') }}" alt="Euro 2024">    
+    </a>
+    <p>Haz clic en esta imagen para ver los partidos</p>
+</div>
+{% endblock %}
