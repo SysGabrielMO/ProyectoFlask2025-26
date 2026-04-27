@@ -2,7 +2,7 @@
 
 Aplicación web desarrollada con **Flask** y **Jinja2** para consultar los partidos de la Eurocopa 2024.
 
-Proyecto realizado para el módulo de **Desarrollo de Aplicaciones Web** (DAW/ASIR).
+Proyecto realizado para el módulo de **Lenguaje de Marcas** (ASIR).
 
 ---
 
