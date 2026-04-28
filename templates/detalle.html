@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ match.team1 }} vs {{ match.team2 }}{% endblock %}
+
+{% block contenido %}
+<h1>{{ match.team1 }} vs {{ match.team2 }}</h1>
+
+<table class="detalle-tabla">
+    <tr><th>Fecha</th><td>{{ match.date }} {{ match.time }}</td></tr>
+    <tr><th>Ronda</th><td>{{ match.round }}</td></tr>
+    <tr><th>Ciudad</th><td>{{ match.ground }}</td></tr>
+    <tr><th>Descanso</th><td>{{ match.score.ht[0] }} - {{ match.score.ht[1] }}</td></tr>
+    <tr><th>Resultado final</th><td>{{ match.score.ft[0] }} - {{ match.score.ft[1] }}</td></tr>
+    {% if match.group %}
+    <tr><th>Grupo</th><td>{{ match.group }}</td></tr>
+    {% endif %}
+</table>
+
+<h2>Goles {{ match.team1 }}</h2>
+{% if match.goals1 %}
+<ul>
+    {% for g in match.goals1 %}
+    <li>
+        {{ g.name }} {{ g.minute }}'
+        {% if g.offset is defined %} +{{ g.offset }}{% endif %}
+        {% if g.penalty is defined %} (pen.){% endif %}
+        {% if g.owngoal is defined %} (pp){% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Sin goles</p>
+{% endif %}
+
+<h2>Goles {{ match.team2 }}</h2>
+{% if match.goals2 %}
+<ul>
+    {% for g in match.goals2 %}
+    <li>
+        {{ g.name }} {{ g.minute }}'
+        {% if g.offset is defined %} +{{ g.offset }}{% endif %}
+        {% if g.penalty is defined %} (pen.){% endif %}
+        {% if g.owngoal is defined %} (pp){% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Sin goles</p>
+{% endif %}
+
+<br>
+<a href="/partidos">← Volver al listado</a>
+{% endblock %}

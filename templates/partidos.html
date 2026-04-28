@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block titulo %}Partidos - Euro 2024{% endblock %}
+
+{% block contenido %}
+<h1>Partidos</h1>
+
+<form method="get" action="/partidos">
+    <input type="text" name="q" value="{{ q }}" placeholder="Buscar equipo...">
+
+    <select name="ronda">
+        <option value="">Todas las rondas</option>
+        {% for r in rounds %}
+        <option value="{{ r }}" {% if ronda == r %}selected{% endif %}>{{ r }}</option>
+        {% endfor %}
+    </select>
+
+    <select name="orden">
+        <option value="asc" {% if orden == 'asc' %}selected{% endif %}>Fecha ↑</option>
+        <option value="desc" {% if orden == 'desc' %}selected{% endif %}>Fecha ↓</option>
+    </select>
+
+    <button type="submit">Buscar</button>
+</form>
+
+<p>{{ matches|length }} partido(s) encontrado(s)</p>
+
+{% if matches %}
+<table>
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Partido</th>
+            <th>Resultado</th>
+            <th>Ronda</th>
+            <th>Detalle</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for m in matches %}
+        <tr>
+            <td>{{ m.date }}</td>
+            <td>{{ m.team1 }} vs {{ m.team2 }}</td>
+            <td>{{ m.score.ft[0] }} - {{ m.score.ft[1] }}</td>
+            <td>{{ m.round }}</td>
+            <td><a href="/partido/{{ m.id }}">Ver</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No se encontraron partidos.</p>
+{% endif %}
+{% endblock %}
