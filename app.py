@@ -11,11 +11,9 @@ for i, m in enumerate(MATCHES):
 
 ROUNDS = sorted(set(m['round'] for m in MATCHES))
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 @app.route('/partidos')
 def partidos():
@@ -33,9 +31,7 @@ def partidos():
 
     results = sorted(results, key=lambda m: m['date'], reverse=(orden == 'desc'))
 
-    return render_template('partidos.html', matches=results, rounds=ROUNDS,
-                           q=query, ronda=ronda, orden=orden)
-
+    return render_template('partidos.html', matches=results, rounds=ROUNDS, q=query, ronda=ronda, orden=orden)
 
 @app.route('/partido/<int:mid>')
 def partido(mid):
@@ -43,7 +39,6 @@ def partido(mid):
         abort(404)
     match = MATCHES[mid]
     return render_template('detalle.html', match=match)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
