@@ -1,9 +1,29 @@
----
+# Euro 2024 - Aplicación Flask
+
+Aplicación web desarrollada con **Flask** y **Jinja2** para consultar los partidos de la Eurocopa 2024.
+
+Proyecto realizado para el módulo de **Lenguaje de Marcas** (ASIR).
+
+## 📁 Estructura del proyecto
+
+    ProyectoFlask2025-26/
+    ├── app.py
+    ├── euro_modificado.json
+    ├── Procfile
+    ├── requirements.txt
+    ├── templates/
+    │   ├── base.html
+    │   ├── index.html
+    │   ├── partidos.html
+    │   └── detalle.html
+    └── static/
+        ├── style.css
+        └── eurocopa.jpg
 
 ## 📊 JSON utilizado
 
-**Fuente:** `euro_modificado.json`  
-**Nombre del torneo:** Euro 2024  
+**Fuente:** `euro_modificado.json`
+**Nombre del torneo:** Euro 2024
 **Total de partidos:** 51
 
 El JSON contiene todos los partidos de la Eurocopa 2024, desde la fase de grupos hasta la final. Cada partido incluye los siguientes campos:
@@ -20,26 +40,23 @@ El JSON contiene todos los partidos de la Eurocopa 2024, desde la fase de grupos
 | `group` | Grupo (solo en fase de grupos) |
 | `yellow_cards` | Tarjetas amarillas por equipo |
 
----
-
 ## 🚀 Instalación y ejecución local
 
-```bash
+    # Clonar el repositorio
+    git clone https://github.com/SysGabrielMO/ProyectoFlask2025-26.git
+    cd ProyectoFlask2025-26
 
-# Crear y activar entorno virtual
-python3 -m venv venv
-source venv/bin/activate
+    # Crear y activar entorno virtual
+    python3 -m venv venv
+    source venv/bin/activate
 
-# Instalar dependencias
-pip install -r requirements.txt
+    # Instalar dependencias
+    pip install -r requirements.txt
 
-# Ejecutar la aplicación
-python app.py
-```
+    # Ejecutar la aplicación
+    python app.py
 
 Abrir en el navegador: http://127.0.0.1:5000
-
----
 
 ## 🌐 Rutas de la aplicación
 
@@ -49,18 +66,14 @@ Abrir en el navegador: http://127.0.0.1:5000
 | `/partidos` | Listado y búsqueda de partidos |
 | `/partido/<id>` | Detalle completo de un partido |
 
----
-
 ## 🔍 Funcionalidades
 
-- **Búsqueda por equipo** — búsqueda parcial en nombre de equipo local o visitante
-- **Filtro por ronda** — selector generado dinámicamente desde el JSON
-- **Ordenación por fecha** — ascendente o descendente
-- **Vista de detalle** — muestra toda la información del partido: resultado, goleadores, estadio y tarjetas
-- **Error 404** — si se accede a un partido inexistente
-- **Herencia de plantillas** — todas las páginas extienden `base.html`
-
----
+- Búsqueda por equipo — búsqueda parcial en nombre de equipo local o visitante
+- Filtro por ronda — selector generado dinámicamente desde el JSON
+- Ordenación por fecha — ascendente o descendente
+- Vista de detalle — muestra toda la información del partido: resultado, goleadores, estadio y tarjetas
+- Error 404 — si se accede a un partido inexistente
+- Herencia de plantillas — todas las páginas extienden `base.html`
 
 ## ☁️ Despliegue en Railway
 
@@ -71,10 +84,9 @@ La aplicación está desplegada en [Railway](https://railway.app), una plataform
 El despliegue es automático: cada `git push` a `main` redespliega la aplicación.
 
 Archivos necesarios para el despliegue:
+
 - `requirements.txt` — dependencias del proyecto
 - `Procfile` — indica a Railway cómo arrancar la app (`web: gunicorn app:app`)
-
----
 
 ## 🛠️ Tecnologías utilizadas
 
