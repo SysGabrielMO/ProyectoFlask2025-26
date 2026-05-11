@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, abort
 import json
-import os 
 app = Flask(__name__)
 
 with open('euro_modificado.json', encoding='utf-8') as f:
