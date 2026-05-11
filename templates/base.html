@@ -1,27 +1,21 @@
-{% extends 'base.html' %}
-
-{% block titulo %}Top 5 Partidos{% endblock %}
-
-{% block contenido %}
-<h1>Top 5 Partidos con más goles</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Equipos</th>
-            <th>Resultado</th>
-            <th>Ronda</th>
-            <th>Ciudad</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for m in matches %}
-        <tr>
-            <td>{{ m.team1 }} vs {{ m.team2 }}</td>
-            <td>{{ m.score.ft[0] }} - {{ m.score.ft[1] }}</td>
-            <td>{{ m.round }}</td>
-            <td>{{ m.ground }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block titulo %}Euro 2024{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <a href="/">Euro 2024</a>
+        <a href="/top">Top 5</a>
+    </header>
+    <main>
+        {% block contenido %}{% endblock %}
+    </main>
+    <footer>
+        <span>Gabriel Merencio Ortega</span>
+        <span>Proyecto Flask 2025-26</span>
+    </footer>
+</body>
+</html>
