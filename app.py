@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, abort
 import json
+import os 
 app = Flask(__name__)
 
 with open('euro_modificado.json', encoding='utf-8') as f:
@@ -24,7 +25,7 @@ def partidos():
     results = MATCHES
 
     if query:
-        results = [m for m in results if query in m['team1'].lower() or query in m['team2'].lower()]
+        results = [m for m in results if query in m['ground'].lower()]
 
     if ronda:
         results = [m for m in results if m['round'] == ronda]
@@ -33,6 +34,11 @@ def partidos():
 
     return render_template('partidos.html', matches=results, rounds=ROUNDS, q=query, ronda=ronda, orden=orden)
 
+@app.route('/top')
+def top():
+    top_matches = sorted(MATCHES, key=lambda m: (m['score']['ft'][0] + m['score']['ft'][1]), reverse=True)[:5]
+    return render_template('top.html', matches=top_matches)
+
 @app.route('/partido/<int:mid>')
 def partido(mid):
     if mid < 0 or mid >= len(MATCHES):
@@ -40,6 +46,10 @@ def partido(mid):
     match = MATCHES[mid]
     return render_template('detalle.html', match=match)
 
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
+
+
+

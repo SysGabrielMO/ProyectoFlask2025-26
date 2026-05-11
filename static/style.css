@@ -21,6 +21,8 @@ footer {
 header {
     background: #ff0000;
     padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 header a {
